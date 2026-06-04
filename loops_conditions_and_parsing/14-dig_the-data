@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-awk '{print $1, $(NF-1)}' | sort | uniq -c | sort -nr
+# Displays the top IPs and HTTP status codes from an Apache log
+awk '{print $1, $(NF-1)}' apache-access.log | sort | uniq -c | sort -nr
+
