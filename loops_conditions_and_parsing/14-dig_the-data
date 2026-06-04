@@ -1,15 +1,2 @@
 #!/usr/bin/env bash
-# Script to group visitors by IP and HTTP status code
-
-awk '{
-    ip=$1
-    code=$9
-    key=ip " " code
-    count[key]++
-}
-END {
-    for (k in count) {
-        print count[k], k
-    }
-}' access.log | sort -nr
-
+awk '{print $1, $(NF-1)}' | sort | uniq -c | sort -nr
