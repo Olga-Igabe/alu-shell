@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+pid_file="/var/run/myscript.pid"
+
+echo $$ > "$pid_file"
+
+sigterm_handler() {
+    echo "I hate the kill command"
+    rm -f "$pid_file"
+    exit 0
+}
+
+sigint_handler() {
+    echo "Y U no love me?!"
+}
+
+sigquit_handler() {
+    rm -f "$pid_file"
+    exit 0
+}
+
+trap sigterm_handler SIGTERM
+trap sigint_handler SIGINT
+trap sigquit_handler SIGQUIT
+
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
