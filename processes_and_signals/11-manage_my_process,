@@ -28,7 +28,6 @@ restart() {
 
     echo "manage_my_process restarted"
 }
-
 case "$1" in
     start)
         start
